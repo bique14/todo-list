@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import "./App.css";
 
 import { buttonActions } from "./state/button/actions";
-import { uid } from "./lib/uid";
 import Notes from "./Notes";
 
 const App = (props) => {
@@ -12,7 +11,7 @@ const App = (props) => {
 
   const onEnter = (e) => {
     if (e.key === "Enter" && noteDetails) {
-      onSubmitNote({ id: uid(), details: noteDetails });
+      onSubmitNote({ details: noteDetails });
       setNoteDetails("");
     }
   };
@@ -31,7 +30,6 @@ const App = (props) => {
             disabled={noteDetails.length === 0}
             onClick={() => {
               onSubmitNote({
-                id: uid(),
                 details: noteDetails,
               });
               setNoteDetails("");
@@ -54,8 +52,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onSubmitNote: (note) => {
-      const { id, details } = note;
-      dispatch(buttonActions.submitValue({ id, details }));
+      const { details } = note;
+      dispatch(buttonActions.submitValue({ details }));
     },
   };
 };
