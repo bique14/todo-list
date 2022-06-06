@@ -1,25 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { connect } from "react-redux";
+import "./App.css";
 
-function App() {
+import { noteActions } from "./state/note/actions";
+import { uid } from "./lib/uid";
+import Notes from "./Notes";
+
+const App = (props) => {
+  const { onCreateNewNote } = props;
+  const [noteDetails, setNoteDetails] = useState("");
+
+  const onEnter = (e) => {
+    if (e.key === "Enter") {
+      onCreateNewNote({ id: uid(), details: noteDetails });
+      setNoteDetails("");
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="App-container">
+        <h1>TODO LIST</h1>
+        <div className="input-container">
+          <input
+            value={noteDetails}
+            onChange={(e) => setNoteDetails(e.target.value)}
+            onKeyDown={onEnter}
+          />
+          <button
+            onClick={() => {
+              onCreateNewNote({
+                id: uid(),
+                details: noteDetails,
+              });
+              setNoteDetails("");
+            }}
+          >
+            CREATE
+          </button>
+        </div>
+
+        <Notes />
+      </div>
     </div>
   );
-}
+};
 
-export default App;
+const mapStateToProps = (state) => {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onCreateNewNote: (note) => {
+      const { id, details } = note;
+      dispatch(noteActions.createNewNote({ id, details }));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

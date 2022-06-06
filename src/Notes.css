@@ -1,0 +1,36 @@
+.notes-container {
+  width: 75%;
+  margin: 2rem 0;
+}
+
+.note-count {
+  display: flex;
+  justify-content: space-between;
+}
+
+.note-item {
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  color: black;
+  margin: 1rem 0;
+  text-align: left;
+  padding: 1rem 1.5rem;
+  border-radius: 5px;
+}
+
+.note-item > span {
+  font-weight: bold;
+}
+
+.note-item > button {
+  border-radius: 9999px;
+  border: 0;
+  width: 2rem;
+  cursor: pointer;
+}
+
+.note-item > button:hover {
+  background-color: #3da759;
+  box-shadow: 0 0 0px 5px rgb(239, 239, 239) inset;
+}
