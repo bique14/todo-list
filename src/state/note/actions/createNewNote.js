@@ -6,3 +6,5 @@ export const createNewNote = (action) => {
     payload: action,
   };
 };
+
+createNewNote.id = createNewNote;

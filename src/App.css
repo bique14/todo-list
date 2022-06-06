@@ -57,7 +57,7 @@
   cursor: pointer;
 }
 
-.input-container > button:hover {
+.input-container > button:hover:enabled {
   color: white;
   background-color: #3da759;
 }

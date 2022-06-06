@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import "./Notes.css";
-import { noteActions } from "./state/note/actions";
+import { buttonActions } from "./state/button/actions";
 
 const Notes = (props) => {
   const { notes, total, done, onDoneNote } = props;
@@ -36,7 +36,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onDoneNote: (id) => {
-      dispatch(noteActions.doneNote({ id }));
+      dispatch(buttonActions.onDone({ id }));
     },
   };
 };

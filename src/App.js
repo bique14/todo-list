@@ -2,17 +2,17 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import "./App.css";
 
-import { noteActions } from "./state/note/actions";
+import { buttonActions } from "./state/button/actions";
 import { uid } from "./lib/uid";
 import Notes from "./Notes";
 
 const App = (props) => {
-  const { onCreateNewNote } = props;
+  const { onSubmitNote } = props;
   const [noteDetails, setNoteDetails] = useState("");
 
   const onEnter = (e) => {
-    if (e.key === "Enter") {
-      onCreateNewNote({ id: uid(), details: noteDetails });
+    if (e.key === "Enter" && noteDetails) {
+      onSubmitNote({ id: uid(), details: noteDetails });
       setNoteDetails("");
     }
   };
@@ -28,8 +28,9 @@ const App = (props) => {
             onKeyDown={onEnter}
           />
           <button
+            disabled={noteDetails.length === 0}
             onClick={() => {
-              onCreateNewNote({
+              onSubmitNote({
                 id: uid(),
                 details: noteDetails,
               });
@@ -52,9 +53,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onCreateNewNote: (note) => {
+    onSubmitNote: (note) => {
       const { id, details } = note;
-      dispatch(noteActions.createNewNote({ id, details }));
+      dispatch(buttonActions.submitValue({ id, details }));
     },
   };
 };

@@ -1,7 +1,7 @@
-import { increaseValue } from "./increaseValue";
-import { decreaseValue } from "./decreaseValue";
+import { submitValue } from "./submitValue";
+import { onDone } from "./onDone";
 
 export const buttonActions = {
-  increaseValue,
-  decreaseValue,
+  submitValue,
+  onDone,
 };

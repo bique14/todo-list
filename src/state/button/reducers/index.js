@@ -1,13 +1,13 @@
-import { decreaseValueReducer } from "./decreaseValue";
-import { increaseValueReducer } from "./increaseValue";
+import { submitReducer } from "./submit";
+import { onDoneReducer } from "./onDone";
 import { initialState } from "./init";
 
 export const buttonReducers = (state = initialState, action) => {
   switch (action.type) {
-    case "button/INCREASE_VALUE":
-      return increaseValueReducer(state, action);
-    case "button/DECREASE_VALUE":
-      return decreaseValueReducer(state, action);
+    case "button/SUBMIT":
+      return submitReducer(state, action);
+    case "button/ON_DONE":
+      return onDoneReducer(state, action);
     default:
       return state;
   }

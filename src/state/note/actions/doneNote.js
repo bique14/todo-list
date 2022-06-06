@@ -6,3 +6,5 @@ export const doneNote = (action) => {
     payload: action,
   };
 };
+
+doneNote.id = id;
